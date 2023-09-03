@@ -4,6 +4,7 @@ import com.lordibe.store.model.customer.Customer;
 import com.lordibe.store.model.product.Products;
 import com.lordibe.store.model.product.Stock;
 import com.lordibe.store.services.service.abstracts.Check;
+import com.lordibe.store.services.service.abstracts.FIFO;
 import com.lordibe.store.services.serviceInterface.CustomerServiceInterface;
 
 import java.util.HashMap;
@@ -68,10 +69,14 @@ public class CustomerServices extends Customer implements CustomerServiceInterfa
 
     @Override
     public void viewStock() {
-        new Stock().viewTotalStock();
+        Stock.viewTotalStock();
     }
 
     public Map<String, Integer> getCart() {
         return cart;
+    }
+
+    public void buyProducts() {
+        FIFO.setQueueCheckout(this.getCart());
     }
 }
