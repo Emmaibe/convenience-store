@@ -9,11 +9,11 @@ import java.util.Set;
 
 public class CashierServices implements CashierServiceInterface {
     @Override
-    public void issuesReceipt(CustomerServices customerServices, Cashier cashier) {
+    public void issuesReceipt(Cashier cashier) {
         Set<String> names = Staff.getStaffList().keySet();
         if (names.contains(cashier.getName())) {
             Receipt receipt = new Receipt();
-            boolean state = receipt.issuesReciept(customerServices);
+            boolean state = receipt.issuesReciept();
 
             if (state != false) {
                 System.out.printf("Receipt issued by :   %s\n", cashier.getName());

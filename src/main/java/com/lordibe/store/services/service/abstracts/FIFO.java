@@ -1,20 +1,18 @@
 package com.lordibe.store.services.service.abstracts;
 
+import com.lordibe.store.services.service.CustomerServices;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FIFO {
     @Getter
-    static Queue<Map<String, Integer>> queueCheckout = new PriorityQueue<>();
+    static Deque<CustomerCart<CustomerServices, Map<String, Integer>, Integer>> queueCheckout = new LinkedList<>();
 
-    public static void setQueueCheckout(Map<String, Integer> cart) {
+    public static void setQueueCheckout(CustomerCart<CustomerServices, Map<String, Integer>, Integer> cart) {
         FIFO.queueCheckout.offer(cart);
     }
 }

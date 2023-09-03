@@ -124,10 +124,13 @@ public class Main {
 
         customer2.viewCart(); //Customer2 viewing his cart.
 
+        customer2.checkOutFIFO();
+        customer1.checkOutFIFO();
+
         System.out.println();
 
         //Cashier Service
-        cashierService.issuesReceipt(customer1, cashier1); /*Issuing a receipt to a customer. It loops through the customer's
+        cashierService.issuesReceipt(cashier1); /*Issuing a receipt to a customer. It loops through the customer's
                                                             cart, issues a detailed receipt and automatically synchronizes
                                                             and effects the current changes in the category Stock Map due to
                                                             the customer's purchase, with the Stock.csv file. It does this by
@@ -135,6 +138,6 @@ public class Main {
         System.out.println();
 
 
-        cashierService.issuesReceipt(customer2, cashier2); //Issuing a receipt to customer2.
+        cashierService.issuesReceipt(cashier2); //Issuing a receipt to customer2.
     }
 }
