@@ -1,6 +1,8 @@
 package com.lordibe.store.services.service;
 
 import com.lordibe.store.model.product.Stock;
+import com.lordibe.store.services.service.abstracts.FIFO;
+import com.lordibe.store.services.service.abstracts.QuantityPriority;
 import com.lordibe.store.services.service.abstracts.enums.PRODUCT_CATEGORY;
 import com.lordibe.store.services.service.abstracts.enums.STAFF_TYPE;
 import com.lordibe.store.model.staff.Cashier;
@@ -18,6 +20,10 @@ public class ManagerServices implements ManagerServiceInterface {
     @Override
     public void updateStock() {
         new Stock().addToStock();
+    }
+
+    public void sendCustomerToQueue(CustomerServices customerServices) {
+        QuantityPriority.getQuantityQueueCheckout().push(customerServices.getCart());
     }
 
     @Override

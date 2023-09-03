@@ -5,6 +5,7 @@ import com.lordibe.store.model.product.Products;
 import com.lordibe.store.model.product.Stock;
 import com.lordibe.store.services.service.abstracts.Check;
 import com.lordibe.store.services.service.abstracts.FIFO;
+import com.lordibe.store.services.service.abstracts.QuantityPriority;
 import com.lordibe.store.services.serviceInterface.CustomerServiceInterface;
 
 import java.util.HashMap;
@@ -76,7 +77,11 @@ public class CustomerServices extends Customer implements CustomerServiceInterfa
         return cart;
     }
 
-    public void buyProducts() {
+    public void checkOutFIFO() {
         FIFO.setQueueCheckout(this.getCart());
+    }
+
+    public void checkOutQuantityPriority() {
+        QuantityPriority.setQuantityQueueCheckout(this.getCart());
     }
 }

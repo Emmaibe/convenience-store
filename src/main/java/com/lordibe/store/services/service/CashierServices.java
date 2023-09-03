@@ -13,11 +13,17 @@ public class CashierServices implements CashierServiceInterface {
         Set<String> names = Staff.getStaffList().keySet();
         if (names.contains(cashier.getName())) {
             Receipt receipt = new Receipt();
-            receipt.issuesReciept(customerServices);
-            System.out.printf("Receipt issued by :   %s\n", cashier.getName());
+            boolean state = receipt.issuesReciept(customerServices);
 
-            System.out.println("Thanks for your patronage, Have a nice day...");
-            System.out.println("=============================================");
+            if (state != false) {
+                System.out.printf("Receipt issued by :   %s\n", cashier.getName());
+
+                System.out.println("Thanks for your patronage, Have a nice day...");
+                System.out.println("=============================================");
+            } else {
+                System.out.println("The Queue is empty");
+            }
+
         } else {
             System.out.println("This cashier cannot issue a reciept as He or She is no longer with us...");
         }

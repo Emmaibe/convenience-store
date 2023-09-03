@@ -5,5 +5,5 @@ import com.lordibe.store.services.service.CustomerServices;
 public interface ReceiptInterface {
 //    public int getProductPrice(Products price);
 
-    public void issuesReciept(CustomerServices customerServices);
+    public boolean issuesReciept(CustomerServices customerServices);
 }

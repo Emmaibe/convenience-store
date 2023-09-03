@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Receipt implements ReceiptInterface {
     @Override
-    public void issuesReciept(CustomerServices customerServices) {
+    public boolean issuesReciept(CustomerServices customerServices) {
         Map<String, Integer> cartContent = FIFO.getQueueCheckout().poll();
 
         if (cartContent != null) {
@@ -46,7 +46,8 @@ public class Receipt implements ReceiptInterface {
             System.out.printf("Receipt Issued to %s, and Stock Synchronized\n", customerServices.getName());
         }
         else {
-            System.out.println("Queue Cart empty");
+            return false;
         }
+        return true;
     }
 }
