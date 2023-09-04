@@ -30,8 +30,8 @@ public class CustomerServices extends Customer implements CustomerServiceInterfa
         System.out.println("Item    :   Quantity");
         System.out.println("--------------------");
 
-        for (String key : cart.getCustomerCart().keySet()){
-            System.out.printf("%-10s %-10s\n", key, cart.getCustomerCart().get(key));
+        for (String key : this.getCartContent().keySet()){
+            System.out.printf("%-10s %-10s\n", key, this.getCartContent().get(key));
         }
 
         System.out.println("===================");
@@ -47,20 +47,20 @@ public class CustomerServices extends Customer implements CustomerServiceInterfa
                 System.out.printf("Sorry, %s is OUT OF STOCK!\n", name.toUpperCase());
             }
             else if ((targetCategory.get(name).getQntyOfProduct() - quantity) >= 0) {
-                if (cart.getCustomerCart().containsKey(name)) {
-                    cart.getCustomerCart().merge(name, quantity, Integer::sum);
+                if (this.getCartContent().containsKey(name)) {
+                    this.getCartContent().merge(name, quantity, Integer::sum);
                     Check.checkStock(name).get(name).setQntyOfProduct((Check.checkStock(name).get(name).getQntyOfProduct()) - (quantity));
                 } else {
-                    cart.getCustomerCart().put(name, quantity);
+                    this.getCartContent().put(name, quantity);
                     Check.checkStock(name).get(name).setQntyOfProduct((Check.checkStock(name).get(name).getQntyOfProduct()) - (quantity));
                 }
             } else if ((targetCategory.get(name).getQntyOfProduct() - quantity) < 0) {
-                if (cart.getCustomerCart().containsKey(name)) {
-                    cart.getCustomerCart().merge(name, targetCategory.get(name).getQntyOfProduct(), Integer::sum);
+                if (this.getCartContent().containsKey(name)) {
+                    this.getCartContent().merge(name, targetCategory.get(name).getQntyOfProduct(), Integer::sum);
                     Check.checkStock(name).get(name).setQntyOfProduct(0);
 
                 } else {
-                    cart.getCustomerCart().put(name, targetCategory.get(name).getQntyOfProduct());
+                    this.getCartContent().put(name, targetCategory.get(name).getQntyOfProduct());
                     Check.checkStock(name).get(name).setQntyOfProduct(0);
                 }
             }

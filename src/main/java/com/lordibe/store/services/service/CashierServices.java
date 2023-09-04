@@ -16,9 +16,10 @@ public class CashierServices implements CashierServiceInterface {
             boolean state = receipt.issuesReciept();
 
             if (state != false) {
-                System.out.printf("Receipt issued by :   %s\n", cashier.getName());
-
                 System.out.println("Thanks for your patronage, Have a nice day...");
+                System.out.println("=============================================");
+                System.out.printf("Receipt issued by :   %s\n", cashier.getName());
+                System.out.println("Stock Synchronized");
                 System.out.println("=============================================");
             } else {
                 System.out.println("The Queue is empty");

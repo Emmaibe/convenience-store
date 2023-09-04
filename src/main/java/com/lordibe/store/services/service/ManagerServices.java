@@ -23,7 +23,7 @@ public class ManagerServices implements ManagerServiceInterface {
     }
 
     public void sendCustomerToQueue(CustomerServices customerServices) {
-        QuantityPriority.getQuantityQueueCheckout().push(customerServices.getCart());
+        FIFO.getQueueCheckout().push(customerServices.getCart());
     }
 
     @Override

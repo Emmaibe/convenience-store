@@ -3,6 +3,7 @@ package com.lordibe.store;
 import com.lordibe.store.model.product.Stock;
 import com.lordibe.store.model.staff.Cashier;
 import com.lordibe.store.model.staff.Manager;
+import com.lordibe.store.services.service.abstracts.QuantityPriority;
 import com.lordibe.store.services.service.abstracts.enums.PRODUCT_CATEGORY;
 import com.lordibe.store.services.service.abstracts.enums.STAFF_TYPE;
 import com.lordibe.store.services.service.CashierServices;
@@ -22,6 +23,7 @@ public class Main {
 
         //Manager Service object.
         ManagerServices managerServices = new ManagerServices();
+
 
         //Cashier Objects.
         Cashier cashier1 = new Cashier("Emmanuel", 25, "08038579630", "ik@gmail.com", "BSc", 100_000, STAFF_TYPE.CASHIER);
@@ -126,6 +128,8 @@ public class Main {
 
         customer2.checkOutFIFO();
         customer1.checkOutFIFO();
+        customer2.checkOutQuantityPriority();
+        customer1.checkOutQuantityPriority();
 
         System.out.println();
 
@@ -139,5 +143,10 @@ public class Main {
 
 
         cashierService.issuesReceipt(cashier2); //Issuing a receipt to customer2.
+
+        QuantityPriority.viewQuantityQueueCheckOut();
+
+        System.out.println(customer1.getTotalQuantity());
+
     }
 }

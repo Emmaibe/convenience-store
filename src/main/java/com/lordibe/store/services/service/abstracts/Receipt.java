@@ -20,7 +20,7 @@ public class Receipt implements ReceiptInterface {
 
             System.out.println("---------------------------------------------");
 
-            System.out.printf("Customer's Name: %s\n", cartContent.getCutomer().getName());
+            System.out.printf("Customer's Name: %s\n", cartContent.getCUSTOMER().getName());
 
             System.out.println("---------------------------------------------");
 
@@ -28,10 +28,10 @@ public class Receipt implements ReceiptInterface {
 
             System.out.println("---------------------------------------------");
 
-            for (String key : cartContent.getCustomerCart().keySet()) {
-                System.out.printf("%-10s %-10s %-10s %-10s\n", key,cartContent.getCustomerCart().get(key), Check.checkStock(key).get(key).getProductPrice(),(cartContent.getCustomerCart().get(key) * Check.checkStock(key).get(key).getProductPrice()));
-                totalItems += cartContent.getCustomerCart().get(key);
-                totalPrice += (cartContent.getCustomerCart().get(key) * Check.checkStock(key).get(key).getProductPrice());
+            for (String key : cartContent.getCUSTOMER_CART().keySet()) {
+                System.out.printf("%-10s %-10s %-10s %-10s\n", key,cartContent.getCUSTOMER_CART().get(key), Check.checkStock(key).get(key).getProductPrice(),(cartContent.getCUSTOMER_CART().get(key) * Check.checkStock(key).get(key).getProductPrice()));
+                totalItems += cartContent.getCUSTOMER_CART().get(key);
+                totalPrice += (cartContent.getCUSTOMER_CART().get(key) * Check.checkStock(key).get(key).getProductPrice());
             }
 
             System.out.println("---------------------------------------------");
@@ -42,8 +42,6 @@ public class Receipt implements ReceiptInterface {
 
             //Synchronize Stock.csv file with current stock
             Updates.syncStock();
-
-            System.out.printf("Receipt Issued to %s, and Stock Synchronized\n", cartContent.getCutomer().getName());
         }
         else {
             return false;
