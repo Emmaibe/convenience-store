@@ -1,21 +1,22 @@
 package com.lordibe.store.services.service;
 
+import com.lordibe.store.abstracts.PriorityQueueQuantity;
 import com.lordibe.store.model.customer.Customer;
 import com.lordibe.store.model.product.Products;
 import com.lordibe.store.model.product.Stock;
-import com.lordibe.store.services.service.abstracts.Check;
-import com.lordibe.store.services.service.abstracts.CustomerCart;
-import com.lordibe.store.services.service.abstracts.FIFO;
-import com.lordibe.store.services.service.abstracts.QuantityPriority;
+import com.lordibe.store.abstracts.Check;
+import com.lordibe.store.abstracts.FIFO;
 import com.lordibe.store.services.serviceInterface.CustomerServiceInterface;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CustomerServices extends Customer implements CustomerServiceInterface {
+@Getter
+public class CustomerServices extends Customer implements CustomerServiceInterface,Comparable<CustomerServices> {
     private Map<String, Integer> cartContent = new HashMap<>();
+    private int totalQuantity = this.getTotalQuantity();
 
-    CustomerCart<CustomerServices, Map<String, Integer>, Integer> cart = new CustomerCart<>(this, this.getCartContent(), this.getTotalQuantity());
 
     public CustomerServices(String CustomerName, String CustomerPhoneNumber) {
         super(CustomerName, CustomerPhoneNumber);
@@ -76,16 +77,12 @@ public class CustomerServices extends Customer implements CustomerServiceInterfa
         Stock.viewTotalStock();
     }
 
-    public Map<String, Integer> getCartContent() {
-        return cartContent;
-    }
-
     public void checkOutFIFO() {
-        FIFO.setQueueCheckout(this.cart);
+        FIFO.setQueueCheckout(this);
     }
 
     public void checkOutQuantityPriority() {
-        QuantityPriority.setQuantityQueueCheckout(this.cart);
+        PriorityQueueQuantity.setQuantityQueueCheckout(this);
     }
 
     public int getTotalQuantity() {
@@ -96,7 +93,8 @@ public class CustomerServices extends Customer implements CustomerServiceInterfa
         return totalQuantity;
     }
 
-    public CustomerCart<CustomerServices, Map<String, Integer>, Integer> getCart() {
-        return cart;
+    @Override
+    public int compareTo(CustomerServices other) {
+        return -Integer.compare(this.getTotalQuantity(), other.getTotalQuantity());
     }
 }

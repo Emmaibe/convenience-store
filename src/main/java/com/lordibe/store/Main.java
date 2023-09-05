@@ -1,11 +1,11 @@
 package com.lordibe.store;
 
+import com.lordibe.store.abstracts.PriorityQueueQuantity;
 import com.lordibe.store.model.product.Stock;
 import com.lordibe.store.model.staff.Cashier;
 import com.lordibe.store.model.staff.Manager;
-import com.lordibe.store.services.service.abstracts.QuantityPriority;
-import com.lordibe.store.services.service.abstracts.enums.PRODUCT_CATEGORY;
-import com.lordibe.store.services.service.abstracts.enums.STAFF_TYPE;
+import com.lordibe.store.abstracts.enums.PRODUCT_CATEGORY;
+import com.lordibe.store.abstracts.enums.STAFF_TYPE;
 import com.lordibe.store.services.service.CashierServices;
 import com.lordibe.store.services.service.CustomerServices;
 import com.lordibe.store.services.service.ManagerServices;
@@ -128,8 +128,10 @@ public class Main {
 
         customer2.checkOutFIFO();
         customer1.checkOutFIFO();
-        customer2.checkOutQuantityPriority();
         customer1.checkOutQuantityPriority();
+        customer2.checkOutQuantityPriority();
+
+//        PriorityQueueQuantity.checkQueue();
 
         System.out.println();
 
@@ -138,15 +140,11 @@ public class Main {
                                                             cart, issues a detailed receipt and automatically synchronizes
                                                             and effects the current changes in the category Stock Map due to
                                                             the customer's purchase, with the Stock.csv file. It does this by
-                                                            calling the (syncStock()) method founf in the "Updates class". */
+                                                            calling the (syncStock()) method found in the "Updates class". */
         System.out.println();
 
+        cashierService.issuesReceipt(cashier2); //cashier 2 Issuing a receipt to the next in line.
 
-        cashierService.issuesReceipt(cashier2); //Issuing a receipt to customer2.
-
-        QuantityPriority.viewQuantityQueueCheckOut();
-
-        System.out.println(customer1.getTotalQuantity());
 
     }
 }

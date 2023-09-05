@@ -3,7 +3,7 @@ package com.lordibe.store.services.service;
 import com.lordibe.store.model.staff.Cashier;
 import com.lordibe.store.model.staff.Staff;
 import com.lordibe.store.services.serviceInterface.CashierServiceInterface;
-import com.lordibe.store.services.service.abstracts.Receipt;
+import com.lordibe.store.abstracts.Receipt;
 
 import java.util.Set;
 

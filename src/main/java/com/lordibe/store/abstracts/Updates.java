@@ -1,8 +1,8 @@
-package com.lordibe.store.services.service.abstracts;
+package com.lordibe.store.abstracts;
 
+import com.lordibe.store.abstracts.enums.PRODUCT_CATEGORY;
 import com.lordibe.store.model.product.Products;
 import com.lordibe.store.model.product.Stock;
-import com.lordibe.store.services.service.abstracts.enums.PRODUCT_CATEGORY;
 import com.lordibe.store.services.service.ManagerServices;
 
 import java.io.*;

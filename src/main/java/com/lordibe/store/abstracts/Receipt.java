@@ -1,16 +1,14 @@
-package com.lordibe.store.services.service.abstracts;
+package com.lordibe.store.abstracts;
 
 import com.lordibe.store.services.service.CustomerServices;
 import com.lordibe.store.services.serviceInterface.ReceiptInterface;
 
-import java.util.Map;
-
 public class Receipt implements ReceiptInterface {
     @Override
     public boolean issuesReciept() {
-        CustomerCart<CustomerServices, Map<String, Integer>, Integer> cartContent = FIFO.getQueueCheckout().poll();
+        CustomerServices customerService = FIFO.getQueueCheckout().poll();
 
-        if (cartContent != null) {
+        if (customerService != null) {
             int totalItems = 0;
             int totalPrice = 0;
 
@@ -20,7 +18,7 @@ public class Receipt implements ReceiptInterface {
 
             System.out.println("---------------------------------------------");
 
-            System.out.printf("Customer's Name: %s\n", cartContent.getCUSTOMER().getName());
+            System.out.printf("Customer's Name: %s\n", customerService.getName());
 
             System.out.println("---------------------------------------------");
 
@@ -28,10 +26,10 @@ public class Receipt implements ReceiptInterface {
 
             System.out.println("---------------------------------------------");
 
-            for (String key : cartContent.getCUSTOMER_CART().keySet()) {
-                System.out.printf("%-10s %-10s %-10s %-10s\n", key,cartContent.getCUSTOMER_CART().get(key), Check.checkStock(key).get(key).getProductPrice(),(cartContent.getCUSTOMER_CART().get(key) * Check.checkStock(key).get(key).getProductPrice()));
-                totalItems += cartContent.getCUSTOMER_CART().get(key);
-                totalPrice += (cartContent.getCUSTOMER_CART().get(key) * Check.checkStock(key).get(key).getProductPrice());
+            for (String key : customerService.getCartContent().keySet()) {
+                System.out.printf("%-10s %-10s %-10s %-10s\n", key, customerService.getCartContent().get(key), Check.checkStock(key).get(key).getProductPrice(),(customerService.getCartContent().get(key) * Check.checkStock(key).get(key).getProductPrice()));
+                totalItems += customerService.getCartContent().get(key);
+                totalPrice += (customerService.getCartContent().get(key) * Check.checkStock(key).get(key).getProductPrice());
             }
 
             System.out.println("---------------------------------------------");

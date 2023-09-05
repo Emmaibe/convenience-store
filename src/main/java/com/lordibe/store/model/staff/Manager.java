@@ -1,6 +1,6 @@
 package com.lordibe.store.model.staff;
 
-import com.lordibe.store.services.service.abstracts.enums.STAFF_TYPE;
+import com.lordibe.store.abstracts.enums.STAFF_TYPE;
 
 public class Manager extends Staff {
     public Manager(String name, int age, String phoneNumber, String email, String certificate, int salary, STAFF_TYPE position) {

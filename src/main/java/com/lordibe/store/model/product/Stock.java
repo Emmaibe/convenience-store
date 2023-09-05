@@ -1,6 +1,6 @@
 package com.lordibe.store.model.product;
 
-import com.lordibe.store.services.service.abstracts.enums.PRODUCT_CATEGORY;
+import com.lordibe.store.abstracts.enums.PRODUCT_CATEGORY;
 
 import java.io.*;
 import java.nio.file.Files;

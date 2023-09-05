@@ -1,16 +1,13 @@
 package com.lordibe.store.services.service;
 
 import com.lordibe.store.model.product.Stock;
-import com.lordibe.store.services.service.abstracts.FIFO;
-import com.lordibe.store.services.service.abstracts.QuantityPriority;
-import com.lordibe.store.services.service.abstracts.enums.PRODUCT_CATEGORY;
-import com.lordibe.store.services.service.abstracts.enums.STAFF_TYPE;
+import com.lordibe.store.abstracts.FIFO;
+import com.lordibe.store.abstracts.enums.PRODUCT_CATEGORY;
+import com.lordibe.store.abstracts.enums.STAFF_TYPE;
 import com.lordibe.store.model.staff.Cashier;
 import com.lordibe.store.model.staff.Staff;
 import com.lordibe.store.services.serviceInterface.ManagerServiceInterface;
-import com.lordibe.store.services.service.abstracts.Updates;
-
-import java.sql.SQLOutput;
+import com.lordibe.store.abstracts.Updates;
 
 public class ManagerServices implements ManagerServiceInterface {
     public void addToStock (String productName, int productPrice, PRODUCT_CATEGORY PRODUCTCATEGORY, int qntyOfProduct) {
@@ -23,7 +20,7 @@ public class ManagerServices implements ManagerServiceInterface {
     }
 
     public void sendCustomerToQueue(CustomerServices customerServices) {
-        FIFO.getQueueCheckout().push(customerServices.getCart());
+        FIFO.getQueueCheckout().push(customerServices);
     }
 
     @Override

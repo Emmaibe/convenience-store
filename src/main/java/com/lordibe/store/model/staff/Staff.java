@@ -1,6 +1,6 @@
 package com.lordibe.store.model.staff;
 
-import com.lordibe.store.services.service.abstracts.enums.STAFF_TYPE;
+import com.lordibe.store.abstracts.enums.STAFF_TYPE;
 
 import java.util.*;
 

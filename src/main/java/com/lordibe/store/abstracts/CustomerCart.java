@@ -1,4 +1,4 @@
-package com.lordibe.store.services.service.abstracts;
+package com.lordibe.store.abstracts;
 
 import lombok.AccessLevel;
 import lombok.Getter;
