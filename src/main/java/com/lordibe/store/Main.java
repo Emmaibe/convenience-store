@@ -49,7 +49,7 @@ public class Main {
         //IMPLEMENTING VARIOUS METHODS
 
         //Manager Services
-
+        managerServices.updateStock();
 
 
         //CUSTOMER SERVICES
@@ -57,6 +57,7 @@ public class Main {
         customer1.addToCart("Bread", 10);
         customer1.addToCart("pringles", 5);
         customer1.addToCart("torchLight", 2);
+        customer1.addToCart("GoldenMorn", 5);
         customer1.addToCart("GoldenMorn", 5);
         customer1.addToCart("sanitizers", 3);
         customer1.addToCart("Tea", 10);
@@ -143,26 +144,59 @@ public class Main {
         customer3.checkOutQuantityPriority();
         customer4.checkOutQuantityPriority();
         customer5.checkOutQuantityPriority();
+        customer6.checkOutQuantityPriority();
 
         System.out.println();
+
 
         //Cashier Service
-        cashierService.issuesReceipt(cashier1);
+
+        //Receipt based on FIFO
+//        cashierService.issuesReceiptFIFO(cashier1);
+//
+//        System.out.println();
+//
+//        cashierService.issuesReceiptFIFO(cashier2);
+//
+//        System.out.println();
+//
+//        cashierService.issuesReceiptFIFO(cashier1);
+//
+//        System.out.println();
+//
+//        cashierService.issuesReceiptFIFO(cashier2);
+//
+//        System.out.println();
+//
+//        cashierService.issuesReceiptFIFO(cashier1);
+//
+//        System.out.println();
+//
+//        cashierService.issuesReceiptFIFO(cashier2);
+//
+//        System.out.println();
+
+        //Receipt issue base on PriorityQueue (Quantity of goods bought)
+        cashierService.issuesReceiptPriority(cashier1);
 
         System.out.println();
 
-        cashierService.issuesReceipt(cashier2);
+        cashierService.issuesReceiptPriority(cashier2);
 
         System.out.println();
 
-        cashierService.issuesReceipt(cashier1);
+        cashierService.issuesReceiptPriority(cashier1);
 
         System.out.println();
 
-        cashierService.issuesReceipt(cashier2);
+        cashierService.issuesReceiptPriority(cashier2);
 
         System.out.println();
 
-        cashierService.issuesReceipt(cashier1);
+        cashierService.issuesReceiptPriority(cashier1);
+
+        System.out.println();
+
+        cashierService.issuesReceiptPriority(cashier2);
     }
 }

@@ -41,30 +41,35 @@ public class CustomerServices extends Customer implements CustomerServiceInterfa
     }
 
     @Override
-    public void addToCart(String pName, int quantity) {
+    public String addToCart(String pName, int quantity) {
         String name = pName.toLowerCase();
         Map<String, Products> targetCategory = Check.checkStock(name);
 
         if (targetCategory != null) {
             if (targetCategory.get(name).getQntyOfProduct() <= 0) {
                 System.out.printf("Sorry, %s is OUT OF STOCK!\n", name.toUpperCase());
+                return "out of stock";
             }
             else if ((targetCategory.get(name).getQntyOfProduct() - quantity) >= 0) {
                 if (this.getCartContent().containsKey(name)) {
                     this.getCartContent().merge(name, quantity, Integer::sum);
                     Check.checkStock(name).get(name).setQntyOfProduct((Check.checkStock(name).get(name).getQntyOfProduct()) - (quantity));
+                    return "merged";
                 } else {
                     this.getCartContent().put(name, quantity);
                     Check.checkStock(name).get(name).setQntyOfProduct((Check.checkStock(name).get(name).getQntyOfProduct()) - (quantity));
+                    return "added";
                 }
-            } else if ((targetCategory.get(name).getQntyOfProduct() - quantity) < 0) {
+            }
+            else if ((targetCategory.get(name).getQntyOfProduct() - quantity) < 0) {
                 if (this.getCartContent().containsKey(name)) {
                     this.getCartContent().merge(name, targetCategory.get(name).getQntyOfProduct(), Integer::sum);
                     Check.checkStock(name).get(name).setQntyOfProduct(0);
-
+                    return "last quantity merged";
                 } else {
                     this.getCartContent().put(name, targetCategory.get(name).getQntyOfProduct());
                     Check.checkStock(name).get(name).setQntyOfProduct(0);
+                    return "last quantity";
                 }
             }
         }
@@ -72,6 +77,7 @@ public class CustomerServices extends Customer implements CustomerServiceInterfa
         else {
             System.out.printf("OOPS... sorry, %s is unavailable in our Stock, please check for available products by viewing our stock\n", name);
         }
+        return "failed";
     }
 
     @Override

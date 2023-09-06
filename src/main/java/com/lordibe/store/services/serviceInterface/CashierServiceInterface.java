@@ -4,5 +4,6 @@ import com.lordibe.store.model.staff.Cashier;
 import com.lordibe.store.services.service.CustomerServices;
 
 public interface CashierServiceInterface {
-    public void issuesReceipt(Cashier cashier);
+    public void issuesReceiptFIFO(Cashier cashier);
+    public void issuesReceiptPriority(Cashier cashier);
 }

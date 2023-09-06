@@ -9,11 +9,32 @@ import java.util.Set;
 
 public class CashierServices implements CashierServiceInterface {
     @Override
-    public void issuesReceipt(Cashier cashier) {
+    public void issuesReceiptFIFO(Cashier cashier) {
         Set<String> names = Staff.getStaffList().keySet();
         if (names.contains(cashier.getName())) {
             Receipt receipt = new Receipt();
-            boolean state = receipt.issuesReciept();
+            boolean state = receipt.issuesRecieptFIFO();
+
+            if (state != false) {
+                System.out.println("Thanks for your patronage, Have a nice day...");
+                System.out.println("=============================================");
+                System.out.printf("Receipt issued by :   %s\n", cashier.getName());
+                System.out.println("Stock Synchronized");
+                System.out.println("=============================================");
+            } else {
+                System.out.println("The Queue is empty");
+            }
+
+        } else {
+            System.out.println("This cashier cannot issue a reciept as He or She is no longer with us...");
+        }
+    }
+
+    public void issuesReceiptPriority(Cashier cashier) {
+        Set<String> names = Staff.getStaffList().keySet();
+        if (names.contains(cashier.getName())) {
+            Receipt receipt = new Receipt();
+            boolean state = receipt.issuesRecieptPriority();
 
             if (state != false) {
                 System.out.println("Thanks for your patronage, Have a nice day...");
