@@ -10,10 +10,14 @@ import com.lordibe.store.services.service.CashierServices;
 import com.lordibe.store.services.service.CustomerServices;
 import com.lordibe.store.services.service.ManagerServices;
 
+import java.util.Deque;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 public class Main {
     public static void main(String[] args) {
 
-        //NEW CHANGES MADE IN WEEK 2.
+        //NEW CHANGES MADE IN WEEK 3.
 
         //Stock object
         Stock stock = new Stock();
@@ -27,124 +31,138 @@ public class Main {
 
         //Cashier Objects.
         Cashier cashier1 = new Cashier("Emmanuel", 25, "08038579630", "ik@gmail.com", "BSc", 100_000, STAFF_TYPE.CASHIER);
-        Cashier cashier2 = new Cashier("Voke", 28, "08064656306", "voke@gmail.com", "School Cert", 100_000, STAFF_TYPE.CASHIER);
+        Cashier cashier2 = new Cashier("Pascal", 28, "08064656306", "voke@gmail.com", "School Cert", 100_000, STAFF_TYPE.CASHIER);
 
         //Cashier Service object.
         CashierServices cashierService = new CashierServices();
 
         //Customer Service object.
-        CustomerServices customer1 = new CustomerServices("Pelumi", "08094577448");
-        CustomerServices customer2 = new CustomerServices("Ikechukwu", "09044335746");
+        CustomerServices customer1 = new CustomerServices("Francis", "08094577448");
+        CustomerServices customer2 = new CustomerServices("Juliet", "09044758926");
+        CustomerServices customer3 = new CustomerServices("Samuel", "08189027644");
+        CustomerServices customer4 = new CustomerServices("Abigail", "07084902466");
+        CustomerServices customer5 = new CustomerServices("Lucky", "09057309756");
+        CustomerServices customer6 = new CustomerServices("Stanley", "08085023176");
 
 
 
         //IMPLEMENTING VARIOUS METHODS
 
         //Manager Services
-        managerServices.updateStock(); /*Reads from the Stock.csv file which hold all products in the store,
-                                        sorts them and stores them in different maps with respect to their
-                                        category (Located in the Stock class)*/
-
-        System.out.println();
-
-        managerServices.checkStock(); /*Loops through and prints out the total stock from the "totalStock"
-                                        Map (located in the Stock class) after the maps have been updated
-                                        by the managerService object*/
-
-        System.out.println();
 
 
-        //STOCK
-        Stock.viewGroceries(); //Viewing various stock categories after manager updates the stock.
-        System.out.println();
-        Stock.viewHouseholdItems();
-        System.out.println();
-        Stock.viewSnacks();
 
-        System.out.println();
-
-        managerServices.addToStock("GoldenMorn", 1000, PRODUCT_CATEGORY.GROCERIES,5);
-        managerServices.addToStock("GoldenMorn", 1000, PRODUCT_CATEGORY.GROCERIES,5);
-        managerServices.addToStock("TorchLight", 1500, PRODUCT_CATEGORY.HOUSEHOLD_ITEMS,15);
-        managerServices.addToStock("Surge", 2500, PRODUCT_CATEGORY.HOUSEHOLD_ITEMS,50);
-        managerServices.addToStock("Pringles", 5500, PRODUCT_CATEGORY.SNACKS,50);
-
-                                      /*Appends or Updates the quantity of the Stock.csv file by calling a method
-                                      called "updateStockFile()" in the Updates class, which reads through the contents
-                                      of the Stock.csv file while checking if the new product being adding by the manager
-                                      already exist. if it does, it updates the quantity of the given product. if it does
-                                      not, it appends the new product to the Stock.csv file and for any of the two cases
-                                      automatically updates the current stock maps by calling the "updateStock()" method*/
-
-        System.out.println();
-
-
-        //Customer services
-        customer1.addToCart("Bread", 10); /*Adds product to the customer cart. it calls a checkStock(pName)
-                                                           method (Check class) which sorts and returns a category map
-                                                           which contains the specified product. The add to cart method
-                                                           goes through the map and compares the current product quantity
-                                                           with the specified quantity the customer needs. If the difference
-                                                           is greater than 0, it adds the product to the map or merges the
-                                                           quantity if they already exists in the cart. If the difference
-                                                           is less than 0, it adds the product with the remaining quantity
-                                                           in the stock (nothing more) or merges the remaining quantity with
-                                                           the quantity belonging to the specified product if already in the map.
-                                                           It prints out the "OUT OF STOCK" and add nothing to the cart if the
-                                                           quantity is zero. After performing the above functions, it automatically
-                                                           removes the quantity for each product added to the customer's cart
-                                                           form the category map.*/
-
+        //CUSTOMER SERVICES
+        //Customer1 adding to his cart
         customer1.addToCart("Bread", 10);
-        customer1.addToCart("bread", 10);   //Adding more bread to confirm increase in bread's quantity in the cart.
-//        customer1.addToCart("Bread", 10);
-//        customer1.addToCart("Bread", 10);
-//        customer1.addToCart("Bread", 10);
-//        customer1.addToCart("Bread", 10);
-//        customer1.addToCart("Bread", 10);
-//        customer1.addToCart("Bread", 10);
-//        customer1.addToCart("Bread", 11);                 //Trying to exhaust the Bread product from the list to confirm "OUT OF STOCK".
-        customer1.addToCart("Surge", 11);
-        customer1.addToCart("pringles", 11);
-        customer1.addToCart("torchLight", 11);
-        customer1.addToCart("GoldenMorn", 11);
-        customer1.addToCart("sanitizers", 11);
-        customer1.addToCart("Tea", 11);
-        customer1.addToCart("vodka", 11);
-
+        customer1.addToCart("pringles", 5);
+        customer1.addToCart("torchLight", 2);
+        customer1.addToCart("GoldenMorn", 5);
+        customer1.addToCart("sanitizers", 3);
+        customer1.addToCart("Tea", 10);
+        customer1.addToCart("vodka", 6);
 
         System.out.println();
 
-
-        customer1.viewCart(); //Customer viewing her cart.
+        customer1.viewCart(); //Customer1 viewing his cart.
 
         System.out.println();
 
-        customer2.addToCart("Tea", 5); //Customer2 adding to his cart.
+        //Customer2 adding to her cart
+        customer2.addToCart("Tea", 5);
         customer2.addToCart("Pringles", 10);
         customer2.addToCart("Gin", 5);
 
-        customer2.viewCart(); //Customer2 viewing his cart.
+        System.out.println();
 
+        customer2.viewCart(); //Customer2 viewing her cart.
+
+        System.out.println();
+
+        //Customer3 adding to his cart
+        customer3.addToCart("Batteries", 20);
+        customer3.addToCart("muffins", 10);
+        customer3.addToCart("Whiskey", 5);
+        customer3.addToCart("Detergent", 9);
+        customer3.addToCart("Yogurt", 10);
+
+        System.out.println();
+
+        customer3.viewCart(); //Customer3 viewing his cart.
+
+        System.out.println();
+
+        //Customer4 adding to her cart
+        customer4.addToCart("Protein bars", 2);
+        customer4.addToCart("Coffee", 3);
+        customer4.addToCart("Sponges", 1);
+        customer4.addToCart("Toothpaste", 2);
+        customer4.addToCart("Eggs", 2);
+
+        System.out.println();
+
+        customer4.viewCart(); //Customer4 viewing her cart.
+
+        System.out.println();
+
+        //Customer5 adding to his cart
+        customer5.addToCart("Pringles", 50);
+        customer5.addToCart("Surge", 80);
+
+        System.out.println();
+
+        customer5.viewCart(); //Customer5 viewing his cart.
+
+        System.out.println();
+
+        //Customer6 adding to his cart
+        customer6.addToCart("supplements", 2);
+        customer6.addToCart("Tequila", 1);
+
+        System.out.println();
+
+        customer6.viewCart(); //Customer6 viewing his cart.
+
+        System.out.println();
+
+        //Customers placed on a Queue (FIFO)
         customer2.checkOutFIFO();
+        customer5.checkOutFIFO();
         customer1.checkOutFIFO();
+        customer4.checkOutFIFO();
+        customer3.checkOutFIFO();
+        managerServices.sendCustomerToQueue(customer6); /*Any Customer sent to the queue by
+                                                          Manager at any point in time, will
+                                                          be attended to First (will be given
+                                                          the utmost priority)*/
+
+        //Customers placed on a Priority Queue based on the total quantity of goods
+        //(Customer with the largest Quantity will be attended to first)
         customer1.checkOutQuantityPriority();
         customer2.checkOutQuantityPriority();
-
-//        PriorityQueueQuantity.checkQueue();
+        customer3.checkOutQuantityPriority();
+        customer4.checkOutQuantityPriority();
+        customer5.checkOutQuantityPriority();
 
         System.out.println();
 
         //Cashier Service
-        cashierService.issuesReceipt(cashier1); /*Issuing a receipt to a customer. It loops through the customer's
-                                                            cart, issues a detailed receipt and automatically synchronizes
-                                                            and effects the current changes in the category Stock Map due to
-                                                            the customer's purchase, with the Stock.csv file. It does this by
-                                                            calling the (syncStock()) method found in the "Updates class". */
+        cashierService.issuesReceipt(cashier1);
+
         System.out.println();
 
-        cashierService.issuesReceipt(cashier2); //cashier 2 Issuing a receipt to the next in line.
+        cashierService.issuesReceipt(cashier2);
 
+        System.out.println();
 
+        cashierService.issuesReceipt(cashier1);
+
+        System.out.println();
+
+        cashierService.issuesReceipt(cashier2);
+
+        System.out.println();
+
+        cashierService.issuesReceipt(cashier1);
     }
 }

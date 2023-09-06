@@ -1,5 +1,6 @@
 package com.lordibe.store.services.service;
 
+import com.lordibe.store.abstracts.PriorityQueueQuantity;
 import com.lordibe.store.model.product.Stock;
 import com.lordibe.store.abstracts.FIFO;
 import com.lordibe.store.abstracts.enums.PRODUCT_CATEGORY;
