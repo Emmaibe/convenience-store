@@ -51,7 +51,6 @@ public class Main {
         //Manager Services
         managerServices.updateStock();
 
-
         //CUSTOMER SERVICES
         //Customer1 adding to his cart
         customer1.addToCart("Bread", 10);
