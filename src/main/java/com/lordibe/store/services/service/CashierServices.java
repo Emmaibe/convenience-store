@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class CashierServices implements CashierServiceInterface {
     @Override
-    public void issuesReceiptFIFO(Cashier cashier) {
+    public String issuesReceiptFIFO(Cashier cashier) {
         Set<String> names = Staff.getStaffList().keySet();
         if (names.contains(cashier.getName())) {
             Receipt receipt = new Receipt();
@@ -21,16 +21,19 @@ public class CashierServices implements CashierServiceInterface {
                 System.out.printf("Receipt issued by :   %s\n", cashier.getName());
                 System.out.println("Stock Synchronized");
                 System.out.println("=============================================");
+                return "issued";
             } else {
                 System.out.println("The Queue is empty");
+                return "empty queue";
             }
 
         } else {
             System.out.println("This cashier cannot issue a reciept as He or She is no longer with us...");
+            return "invalid Cashier";
         }
     }
 
-    public void issuesReceiptPriority(Cashier cashier) {
+    public String issuesReceiptPriority(Cashier cashier) {
         Set<String> names = Staff.getStaffList().keySet();
         if (names.contains(cashier.getName())) {
             Receipt receipt = new Receipt();
@@ -42,12 +45,15 @@ public class CashierServices implements CashierServiceInterface {
                 System.out.printf("Receipt issued by :   %s\n", cashier.getName());
                 System.out.println("Stock Synchronized");
                 System.out.println("=============================================");
+                return "issued";
             } else {
                 System.out.println("The Queue is empty");
+                return "empty queue";
             }
 
         } else {
             System.out.println("This cashier cannot issue a reciept as He or She is no longer with us...");
+            return "invalid Cashier";
         }
     }
 }
