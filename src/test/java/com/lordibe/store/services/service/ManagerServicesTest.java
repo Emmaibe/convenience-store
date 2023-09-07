@@ -1,11 +1,15 @@
 package com.lordibe.store.services.service;
 
+import com.lordibe.store.abstracts.FIFO;
 import com.lordibe.store.abstracts.enums.STAFF_TYPE;
 import com.lordibe.store.model.staff.Cashier;
 import com.lordibe.store.model.staff.Manager;
 import com.lordibe.store.model.staff.Staff;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -120,5 +124,19 @@ class ManagerServicesTest {
 
         assertEquals(STAFF_TYPE.SUPERVIS0R, cashier.getPosition()); // Check position promotion
         assertEquals(150_000, cashier.getSalary()); // Check salary increase
+    }
+
+    @Test
+    void sendCustomerToQueueTest() {
+        CustomerServices customer1 = new CustomerServices("bisola", "08084323456");
+        CustomerServices customer2 = new CustomerServices("dolapo", "08084758476");
+        CustomerServices customer3 = new CustomerServices("mudia", "08080987496");
+
+        customer2.checkOutFIFO();
+        customer1.checkOutFIFO();
+
+        managerService.sendCustomerToQueue(customer3);
+
+        assertEquals(customer3, FIFO.getQueueCheckout().peek());
     }
 }

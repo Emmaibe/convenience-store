@@ -17,10 +17,4 @@ public class PriorityQueueQuantity {
     public static void setQuantityQueueCheckout(CustomerServices customer) {
         PriorityQueueQuantity.quantityQueueCheckout.offer(customer);
     }
-
-    public static void checkQueue() {
-        for (CustomerServices cus : quantityQueueCheckout) {
-            cus.getTotalQuantity();
-        }
-    }
 }

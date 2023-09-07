@@ -1,6 +1,7 @@
 package com.lordibe.store.model.product;
 
 import com.lordibe.store.abstracts.enums.PRODUCT_CATEGORY;
+import lombok.Getter;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -11,12 +12,19 @@ public class Stock {
     public Stock() {
     }
 
+    @Getter
     private static Map<String, Products> totalStock = new HashMap<>();
+    @Getter
     private static Map<String, Products> groceries = new HashMap<>();
+    @Getter
     private static Map<String, Products> snacks = new HashMap<>();
+    @Getter
     private static Map<String, Products> personalCare = new HashMap<>();
+    @Getter
     private static Map<String, Products> health = new HashMap<>();
+    @Getter
     private static Map<String, Products> alcohol = new HashMap<>();
+    @Getter
     private static Map<String, Products> houseHoldItems = new HashMap<>();
 
 
@@ -97,34 +105,6 @@ public class Stock {
         } catch (IOException e) {
             System.out.println("Input or Output Exception: "+ e.getMessage());
         }
-    }
-
-    public static Map<String, Products> getTotalStock() {
-        return totalStock;
-    }
-
-    public static Map<String, Products> getGroceries() {
-        return groceries;
-    }
-
-    public static Map<String, Products> getSnacks() {
-        return snacks;
-    }
-
-    public static Map<String, Products> getPersonalCare() {
-        return personalCare;
-    }
-
-    public static Map<String, Products> getHealth() {
-        return health;
-    }
-
-    public static Map<String, Products> getAlcohol() {
-        return alcohol;
-    }
-
-    public static Map<String, Products> getHouseHoldItems() {
-        return houseHoldItems;
     }
 
     public static void setTotalSock(String name, Products product) {

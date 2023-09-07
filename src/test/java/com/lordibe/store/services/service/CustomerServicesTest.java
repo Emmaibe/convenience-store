@@ -47,4 +47,11 @@ class CustomerServicesTest {
 
         assertEquals("failed", outcome);
     }
+
+    @Test
+    void conformTotalQuantity() {
+        int totalQuantity = customerTest.getTotalQuantity();
+
+        assertEquals(11, totalQuantity);
+    }
 }
