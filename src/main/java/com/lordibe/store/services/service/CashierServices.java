@@ -15,7 +15,7 @@ public class CashierServices implements CashierServiceInterface {
             Receipt receipt = new Receipt();
             boolean state = receipt.issuesRecieptFIFO();
 
-            if (state != false) {
+            if (state) {
                 System.out.println("Thanks for your patronage, Have a nice day...");
                 System.out.println("=============================================");
                 System.out.printf("Receipt issued by :   %s\n", cashier.getName());
